@@ -3,6 +3,7 @@ import head from "./head.svg";
 import screen from "./screenImg.svg";
 import "./App.css";
 
+alert("This Web-App is for the Developers who get Frustrated Changing the Color Codes of Colors in Main Code.You can Check Your Preview Here.Open this in Laptop for Better Experience")
 var Black={};
 var Blue={};
 var Gray={};
@@ -107,6 +108,11 @@ export default function App() {
                 Colors
               </a>
             </li>
+            {/* <li className="list-inline">
+              <a className="noDeco colorr"  href="https://colorsinspo.com/">
+                Know More 
+              </a>
+            </li> */}
           </ul>
 
           <a href={url} onClick={myFunction} className="icon noDecoI">
@@ -126,7 +132,7 @@ export default function App() {
           <div className="bgColorsDiv">
             {bgColors.map((item) => {
               return (
-                <span key={item} onClick={() => changeBgColor(item.colorCode)} className="bgColors">
+                <span id="backColor" onClick={() => changeBgColor(item.colorCode)} className="bgColors">
                   {item.color}
                 </span>
               );

@@ -36,7 +36,7 @@ body {
   background-color: var(--accentColor);
   color: var(--primaryColor);
   font-weight: bolder;
-  font-size: medium;
+  font-size: larger;
   transform: scale3d(1.07,1.07,1.07);
 }
 .bgColorsDiv {
@@ -61,7 +61,7 @@ body {
   background-color: var(--primaryColor);
   color: var(--accentColor);
   font-weight: bolder;
-  font-size: medium;
+  font-size: larger;
   transform: scale3d(1.07,1.07,1.07);
 }
 .accentColors {
@@ -85,7 +85,7 @@ body {
   background-color: var(--primaryColor);
   color: var(--accentColor);
   font-weight: bolder;
-  font-size: medium;
+  font-size: larger;
   transform: scale3d(1.07,1.07,1.07);
 }
 .header {
@@ -100,7 +100,7 @@ img {
 }
 .mainHead {
   padding: 0.5rem 1rem;
-  word-spacing: 0.5rem;
+  /* word-spacing: 0.5rem; */
   overflow: hidden;
 }
 .hero {
@@ -214,7 +214,14 @@ img {
   padding: 0.5rem;
   opacity: 0.5;
 }
+.footer a{
+  transition: all .3s ease-out;
+}
 @media (hover: hover) {
+  .footer a:hover{
+    font-size: 1.5rem;
+    color: var(--primaryColor);
+   }
   .screenText:hover {
     opacity: 1;
     font-weight: bolder;
@@ -222,6 +229,7 @@ img {
   .mainHead .title:hover{
     font-size: 2.5rem;
     color: var(--accentColor);
+    text-shadow: 0 0 30px var(--primaryColor);
   }
 }
 

@@ -337,4 +337,9 @@ img {
   .bgColors:hover {
     transform: scale3d(1,1,1);
   }
+  .mainHead .title:hover{
+    font-size: 1.5rem;
+    color: var(--accentColor);
+    text-shadow: 0 0 30px var(--primaryColor);
+  }
 }

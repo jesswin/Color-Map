@@ -3,12 +3,12 @@ import head from "./head.svg";
 import screen from "./screenImg.svg";
 import "./App.css";
 
-var Black=new Object();
-var Blue=new Object();
-var Gray=new Object();
-var Pink=new Object();
-var White=new Object();
-var NeonBlue=new Object();
+var Black={};
+var Blue={};
+var Gray={};
+var Pink={};
+var White={};
+var NeonBlue={};
 
 NeonBlue.color="Neon"
 NeonBlue.colorCode="#22d1ee"
@@ -52,6 +52,7 @@ export default function App() {
     console.log(index);
     primaryColors[index].accent.map((item)=>{
     aColors=aColors.concat({'color':item.color,'colorCode':item.colorCode}); 
+    return aColors;
     })
     aColorSetter(aColors);
 }

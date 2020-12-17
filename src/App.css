@@ -342,4 +342,8 @@ img {
     color: var(--accentColor);
     text-shadow: 0 0 30px var(--primaryColor);
   }
+  .footer a:hover{
+    font-size: 1rem;
+    color: var(--primaryColor);
+   }
 }

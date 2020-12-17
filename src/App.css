@@ -27,7 +27,7 @@ body {
   padding: 1rem;
   flex: 1;
   text-align: center;
-  vertical-align: middle;
+  font-size: large;
   flex-basis: 10%;
   color: var(--primaryColor);
   transition: all 0.3s ease-out;
@@ -52,6 +52,7 @@ body {
   margin: 0.5rem;
   padding: 1rem;
   flex: 1;
+  font-size: large;
   flex-basis: 10%;
   color: var(--accentColor);
   transition: all 0.3s ease-out;
@@ -69,6 +70,7 @@ body {
   margin: 0.5rem;
   padding: 1rem;
   flex: 1;
+  font-size: large;
   flex-basis: 10%;
   color: var(--accentColor);
   transition: all 0.3s ease-out;

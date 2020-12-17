@@ -95,7 +95,7 @@ export default function App() {
           <div className="title">Color Map</div>
           <ul className="list-none floating">
             <li className="list-inline">
-              <a 
+              <a target="_blank"
                 className="noDeco"
                 href="http://jesswindevelops.netlify.app"
               >
@@ -103,7 +103,7 @@ export default function App() {
               </a>
             </li>
             <li className="list-inline">
-              <a className="noDeco colorr"  href="https://colorsinspo.com/">
+              <a className="noDeco colorr" target="_blank"  href="https://colorsinspo.com/">
                 Colors
               </a>
             </li>

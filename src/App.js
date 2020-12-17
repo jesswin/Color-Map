@@ -10,6 +10,48 @@ var Gray={};
 var Pink={};
 var White={};
 var NeonBlue={};
+var Teal={};
+var Sky={};
+var BeautyBush={};
+var Brown={};
+var RoyalBlue={};
+var MistyRose={};
+var Topaz={};
+var WispPink={}
+
+
+WispPink.color="WispPink"
+WispPink.colorCode="#f3e6e3"
+WispPink.accent=[Brown,Black,RoyalBlue,Blue,Teal,Topaz]
+
+Topaz.color="Topaz"
+Topaz.colorCode="#776d8a"
+Topaz.accent=[White,MistyRose,Pink,Gray,BeautyBush,WispPink]
+
+MistyRose.color="MistyRose"
+MistyRose.colorCode="#ffdada"
+MistyRose.accent=[Brown,Black,RoyalBlue,Blue,Teal,Topaz]
+
+RoyalBlue.color="RoyalBlue"
+RoyalBlue.colorCode="#31326f"
+RoyalBlue.accent=[BeautyBush,White,Gray,Sky,Pink,MistyRose]
+
+Brown.color="Brown"
+Brown.colorCode="#3f3b3b"
+Brown.accent=[BeautyBush,White,Gray,Sky]
+
+BeautyBush.color="BeautyBush"
+BeautyBush.colorCode="#e7b3b3"
+BeautyBush.accent=[Blue,Black,Brown]
+
+
+Sky.color="Sky"
+Sky.colorCode="#a1eafb"
+Sky.accent=[Blue,Black,Brown]
+
+Teal.color="Teal"
+Teal.colorCode="#1e6262"
+Teal.accent=[Gray,White]
 
 NeonBlue.color="Neon"
 NeonBlue.colorCode="#22d1ee"
@@ -17,26 +59,26 @@ NeonBlue.accent=[Black,Gray,White]
 
 Black.color="Black";
 Black.colorCode="#000";
-Black.accent=[Blue,White,NeonBlue];
+Black.accent=[White,NeonBlue,Sky];
 
-Blue.color="Blue";
-Blue.colorCode="#10316b";
-Blue.accent=[Black,Pink];
+Blue.color="MidnightExpress";
+Blue.colorCode="#14274e";
+Blue.accent=[Gray,Pink,Sky,White];
 
 Pink.color="Pink";
 Pink.colorCode="#fc85ae";
-Pink.accent=[Gray,Black];
+Pink.accent=[Gray,Black,Blue];
 
 White.color="White";
 White.colorCode="#fff";
-White.accent=[Black,Pink];
+White.accent=[Black,Blue,Teal,NeonBlue,Brown];
 
-Gray.color="Gray";
+Gray.color="SmokyGray";
 Gray.colorCode="#dee1ec";
 Gray.accent=[Black,Pink,Blue];
 
-var primaryColors=[Black,Blue,Pink,White,Gray,NeonBlue]; 
-var bgColors = [Black,Blue,White,Gray,Pink];
+var primaryColors=[Black,Blue,Pink,White,Gray,NeonBlue,Teal,Sky,Brown,BeautyBush,RoyalBlue,MistyRose,Topaz,WispPink]; 
+var bgColors = [Black,Blue,White,Gray,Pink,NeonBlue,RoyalBlue,MistyRose];
 export default function App() {
   var [pColor, colorSetter] = useState("");
   var [bgColor, bgColorSetter] = useState("");
@@ -85,6 +127,12 @@ export default function App() {
       x.className = "mainHead";
     }
   }
+
+  // function colorChange(event){
+  //   //var x=document.querySelector("#col").value;
+  //   console.log(event.target.value);
+  //   changeAccentColor(event.target.value);
+  // }
   let url = "#";
 
   return (
@@ -127,7 +175,7 @@ export default function App() {
       <div className="everyThing">
         <div className="colors">
           <span style={{ fontWeight: "bolder", color: "#fdfdfd" }}>
-            Backgroud Colors
+            Backgroud Colors 
           </span>
           <div className="bgColorsDiv">
             {bgColors.map((item) => {
@@ -138,6 +186,12 @@ export default function App() {
               );
             })}
           </div>
+          {/* <span>
+            More Colors
+          </span>
+          <div className="bgColorsDiv">
+          <input id="col" type="color" onChange={colorChange}></input>
+          </div> */}
 
           <span id="pColor" style={{ display: "none", fontWeight: "bolder" }}>
             Primary Colors
@@ -159,7 +213,15 @@ export default function App() {
                 
               );
             })}
+            
           </div>
+          {/* <span>
+            More Colors
+          </span>
+          <div className="primaryColorsDiv">
+          <input id="col" type="color" onChange={colorChange}></input>
+          </div> */}
+            
           <span
             id="accColor"
             style={{ color: "#fdfdfd", display: "none", fontWeight: "bolder" }}
@@ -179,6 +241,13 @@ export default function App() {
                  ) ;
             })}
           </div>
+          {/* <span>
+            More Colors
+          </span>
+          <div className="accentColorsDiv">
+          <input id="col" type="color" onChange={colorChange}></input>
+          </div> */}
+          
         </div>
         <div
           className="screenn"

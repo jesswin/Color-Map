@@ -148,6 +148,15 @@ img {
   font-size: 1.2rem;
   padding: 1rem;
 }
+.active{
+  background-color: var(--primaryColor);
+  border-radius: 0.9rem;
+  padding: 0.2rem;
+  border: 2px solid;
+  color: var(--accentColor);
+  font-weight: bolder;
+  transform: scale3d(2,2,2);
+}
 
 .colors {
   min-width: 50%;
@@ -287,7 +296,7 @@ img {
     padding: 0.5rem;
   }
   .mainHead.responsive a:hover {
-    background-color: var(--accentColor);
+    background-color: black;
     font-weight: normal;
     color: var(--primaryColor);
     border: none;

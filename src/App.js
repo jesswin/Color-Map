@@ -1,4 +1,8 @@
 import React, { useState }  from "react";
+import { BrowserRouter as Router,
+         Switch,
+         Route,
+         Link  } from "react-router-dom";  
 import head from "./head.svg";
 import screen from "./screenImg.svg";
 import "./App.css";
@@ -127,21 +131,16 @@ export default function App() {
       x.className = "mainHead";
     }
   }
-
-  // function colorChange(event){
-  //   //var x=document.querySelector("#col").value;
-  //   console.log(event.target.value);
-  //   changeAccentColor(event.target.value);
-  // }
   let url = "#";
-
   return (
     <div className="App">
+    <Router>
       <div>
-        <title>Color-Map</title>
         {componentDidMount()}
         <div className="mainHead" id="navi">
-          <div className="title">Color Map</div>
+        <Link to="/" style={{textDecoration:"none",color:"#22d1ee"}}>
+          <div className="title">Color Map</div></Link>
+          
           <ul className="list-none floating">
             <li className="list-inline">
               <a 
@@ -156,18 +155,41 @@ export default function App() {
                 Colors
               </a>
             </li>
-            {/* <li className="list-inline">
-              <a className="noDeco colorr"  href="https://colorsinspo.com/">
+            <li className="list-inline">
+              <Link to="/KnowMore" id="knowMore" className="noDeco colorr">
                 Know More 
-              </a>
-            </li> */}
+              </Link>
+            </li>
           </ul>
-
           <a href={url} onClick={myFunction} className="icon noDecoI">
             <i class="fa fa-bars"></i>
           </a>
+          <Switch>
+              <Route path="/KnowMore">
+                <KnowMore />
+              </Route>
+              <Route path="/">
+                <MainApp />
+              </Route>
+          </Switch>
         </div>
       </div>
+      </Router>  
+    </div>
+  );
+
+
+  function KnowMore() {
+    // document.querySelector("#knowMore").classList.add("active")
+    return (
+    <div>
+      <h1 style={{color:"pink"}}>KNow More</h1></div>
+    );
+  }
+  function MainApp(){
+    //document.querySelector("#knowMore").classList.remove("active")
+    return(
+    <div>
       <div className="hero">
         <img src={head} alt="color-palatte"></img>
       </div>
@@ -186,13 +208,6 @@ export default function App() {
               );
             })}
           </div>
-          {/* <span>
-            More Colors
-          </span>
-          <div className="bgColorsDiv">
-          <input id="col" type="color" onChange={colorChange}></input>
-          </div> */}
-
           <span id="pColor" style={{ display: "none", fontWeight: "bolder" }}>
             Primary Colors
           </span>
@@ -207,7 +222,6 @@ export default function App() {
                   onClick={() => changeColors(index,item.colorCode)}
                   className="primaryColors"
                 >
-                  {/* {console.log("i am jess"+item.color)} */}
                   {item.color}
                 </span>
                 
@@ -215,12 +229,6 @@ export default function App() {
             })}
             
           </div>
-          {/* <span>
-            More Colors
-          </span>
-          <div className="primaryColorsDiv">
-          <input id="col" type="color" onChange={colorChange}></input>
-          </div> */}
             
           <span
             id="accColor"
@@ -235,26 +243,18 @@ export default function App() {
                 <span
                   onClick={() => changeAccentColor(item.colorCode)}
                   className="accentColors">
-                {/* > {console.log(item.colorCode)} */}
                   {item.color}
                 </span>
                  ) ;
             })}
           </div>
-          {/* <span>
-            More Colors
-          </span>
-          <div className="accentColorsDiv">
-          <input id="col" type="color" onChange={colorChange}></input>
-          </div> */}
-          
         </div>
         <div
           className="screenn"
           style={{ boxShadow:`0 0 30px ${screenAC}`, backgroundColor: bgColor }}
         >
           <div className="screenNav" style={{ backgroundColor: pColor }}>
-            {/* {console.log(pColor)} */}
+            
             <ul className="list-none">
               <li className="list-inline">
                 <a className="decoNone" style={{ color: screenAC }} href="/">
@@ -338,6 +338,8 @@ export default function App() {
           </a>
         </span>
       </footer>
-    </div>
-  );
+    </div>)
+  }
+  
+  
 }

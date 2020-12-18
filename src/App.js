@@ -109,10 +109,11 @@ export default function App() {
     screenACS(screenAC);
   }
   function changeBgColor(item) {
-    bgColor = item;
-    bgColorSetter(bgColor);
     document.querySelector("#pColor").style.display = "block";
     document.querySelector("#pDiv").style.display = "flex";
+    bgColor = item;
+    bgColorSetter(bgColor);
+    
   }
 
   function componentDidMount() {
@@ -183,7 +184,8 @@ export default function App() {
     // document.querySelector("#knowMore").classList.add("active")
     return (
     <div>
-      <h1 style={{color:"pink"}}>KNow More</h1></div>
+      <h1 style={{color:"pink"}}>KNow More</h1>
+    </div>
     );
   }
   function MainApp(){

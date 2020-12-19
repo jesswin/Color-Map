@@ -1,13 +1,9 @@
-import React, { useState }  from "react";
-import { BrowserRouter as Router,
-         Switch,
-         Route,
-         Link  } from "react-router-dom";  
+import React, { useState }  from "react";  
 import head from "./head.svg";
 import screen from "./screenImg.svg";
 import "./App.css";
 
-alert("This Web-App is for the Developers who get Frustrated Changing the Color Codes of Colors in Main Code.You can Check Your Preview Here.Open this in Laptop for Better Experience")
+alert("Click on Color to Copy Color Code!")
 var Black={};
 var Blue={};
 var Gray={};
@@ -104,14 +100,12 @@ export default function App() {
         }
       }  
     function changeColors(index,code) {
-    console.log(index);
+    copyCode(code);
     aColors=[];
     document.querySelector("#accColor").style.display = "block";
     document.querySelector("#aColor").style.display = "flex";
     pColor = code;
     colorSetter(pColor);
-    console.log(pColor);
-    console.log(index);
     primaryColors[index].accent.map((item)=>{
     aColors=aColors.concat({'color':item.color,'colorCode':item.colorCode});
     return aColors;
@@ -119,19 +113,26 @@ export default function App() {
     aColorSetter(aColors);
 }
   function changeAccentColor(item) {
+    copyCode(item);
     screenAC = item;
-    console.log(screenAC);
     screenACS(screenAC);
   }
   function changeBgColor(item) {
-    console.log("phel");
-    console.log(document.querySelector("#pColor").style.display = "block");
-    console.log("show");
+    copyCode(item);
+    document.querySelector("#pColor").style.display = "block";
     document.querySelector("#pDiv").style.display = "flex";
-    console.log("baad");
     bgColor = item;
     bgColorSetter(bgColor);
    }
+   function copyCode(colorCode){
+    var cb = document.getElementById("cb");
+    cb.value = colorCode;
+    cb.style.display='block';
+    cb.select();
+    document.execCommand('copy');
+    cb.style.display='none';
+   }
+
   function componentDidMount() {
     const script = document.createElement("script");
     script.src = "https://kit.fontawesome.com/a076d05399.js";
@@ -140,7 +141,6 @@ export default function App() {
   }
 
   function myFunction() {
-    console.log("in js");
     var x = document.getElementById("navi");
     if (x.className === "mainHead") {
       x.className += " responsive";
@@ -151,13 +151,11 @@ export default function App() {
   let url = "#";
   return (
     <div className="App">
-    <Router>
       <div>
         {componentDidMount()}
-        {console.log("main return")}
         <div className="mainHead" id="navi">
-        <Link to="" style={{textDecoration:"none",color:"#22d1ee"}}>
-          <div className="title">Color Map</div></Link>
+        <a href={url} style={{textDecoration:"none",color:"#22d1ee"}}>
+          <div className="title">Color Map</div></a>
           
           <ul className="list-none floating">
             <li className="list-inline">
@@ -173,22 +171,12 @@ export default function App() {
                 Colors
               </a>
             </li>
-            <li className="list-inline">
-              <Link to="/KnowMore" id="knowMore" className="noDeco colorr">
-                Know More 
-              </Link>
-            </li>
           </ul>
           <a href={url} onClick={myFunction} className="icon noDecoI">
             <i className="fa fa-bars"></i>
           </a>
-          <Switch>
-              <Route path="/KnowMore" component={KnowMore}/>
-                {/* <Route path="/" component={MainApp}/> */}
-          </Switch>
         </div>
       </div>
-      </Router>
       <div className="hero">
           <img src={head} alt="color-palatte"></img>
         </div>
@@ -200,14 +188,14 @@ export default function App() {
         </span>
         <div className="bgColorsDiv">
           {bgColors.map((item) => {
-            console.log("bgcolrdiv")
             return (
-              <span id="" onClick={() => changeBgColor(item.colorCode)} className="bgColors" style={{backgroundColor:getBg(item.colorCode)}}>
+              <span onClick={() => changeBgColor(item.colorCode)} className="bgColors" style={{backgroundColor:getBg(item.colorCode)}}>
                 {item.color}
               </span>
             );
           })}
         </div>
+        <input id="cb" type="text" hidden></input>
         <span id="pColor" style={{ display: "none", fontWeight: "bolder" }}>
           Primary Colors
         </span>
@@ -217,7 +205,6 @@ export default function App() {
           style={{ display: "none" }}
         >
           {primaryColors.map((item,index) => {
-            console.log("primcolrdiv")
             return (
               <span style={{backgroundColor:getPrimaryBg(item.colorCode)}}
                 onClick={() => changeColors(index,item.colorCode)}
@@ -240,7 +227,6 @@ export default function App() {
         <div style={{display:"none"}} id="aColor" className="accentColorsDiv">
           {
           aColors.map((item) => {
-            console.log("acccolrdiv")
               return(
               <span style={{backgroundColor:getAccentBg(item.colorCode)}}
                 onClick={() => changeAccentColor(item.colorCode)}

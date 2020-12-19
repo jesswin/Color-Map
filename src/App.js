@@ -328,26 +328,5 @@ export default function App() {
         </span>
       </footer> 
      </div>
-    
-  );
-
-  // function MainApp(){
-  //   return(
-  //     <div>
-  //       {console.log("Main again")}
-        
-  //   </div>
-  //   );
-  // }
-  function KnowMore() {
-    // document.querySelector("#knowMore").classList.add("active")
-    return (
-    <div>
-      <h1 style={{color:"pink"}}>KNow More</h1>
-    </div>
-    );
-  }
-
-  
-    
+  );    
 }

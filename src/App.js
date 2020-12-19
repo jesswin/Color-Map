@@ -88,6 +88,21 @@ export default function App() {
   var [bgColor, bgColorSetter] = useState("");
   var [aColors, aColorSetter] = useState([{'color':'','colorCode':''}]);
   var [screenAC, screenACS] = useState("");
+    function getBg(colorCode){
+      if(colorCode===bgColor){
+        return colorCode;
+        }
+    }
+    function getPrimaryBg(colorCode){
+      if(colorCode===pColor){
+        return colorCode;
+        }
+      }
+    function getAccentBg(colorCode){
+      if(colorCode===screenAC){
+        return colorCode;
+        }
+      }  
     function changeColors(index,code) {
     console.log(index);
     aColors=[];
@@ -98,7 +113,7 @@ export default function App() {
     console.log(pColor);
     console.log(index);
     primaryColors[index].accent.map((item)=>{
-    aColors=aColors.concat({'color':item.color,'colorCode':item.colorCode}); 
+    aColors=aColors.concat({'color':item.color,'colorCode':item.colorCode});
     return aColors;
     })
     aColorSetter(aColors);
@@ -109,13 +124,14 @@ export default function App() {
     screenACS(screenAC);
   }
   function changeBgColor(item) {
-    document.querySelector("#pColor").style.display = "block";
+    console.log("phel");
+    console.log(document.querySelector("#pColor").style.display = "block");
+    console.log("show");
     document.querySelector("#pDiv").style.display = "flex";
+    console.log("baad");
     bgColor = item;
     bgColorSetter(bgColor);
-    
-  }
-
+   }
   function componentDidMount() {
     const script = document.createElement("script");
     script.src = "https://kit.fontawesome.com/a076d05399.js";
@@ -138,8 +154,9 @@ export default function App() {
     <Router>
       <div>
         {componentDidMount()}
+        {console.log("main return")}
         <div className="mainHead" id="navi">
-        <Link to="/" style={{textDecoration:"none",color:"#22d1ee"}}>
+        <Link to="" style={{textDecoration:"none",color:"#22d1ee"}}>
           <div className="title">Color Map</div></Link>
           
           <ul className="list-none floating">
@@ -163,169 +180,153 @@ export default function App() {
             </li>
           </ul>
           <a href={url} onClick={myFunction} className="icon noDecoI">
-            <i class="fa fa-bars"></i>
+            <i className="fa fa-bars"></i>
           </a>
           <Switch>
-              <Route path="/KnowMore">
-                <KnowMore />
-              </Route>
-              <Route path="/">
-                <MainApp />
-              </Route>
+              <Route path="/KnowMore" component={KnowMore}/>
+                {/* <Route path="/" component={MainApp}/> */}
           </Switch>
         </div>
       </div>
-      </Router>  
-    </div>
-  );
-
-
-  function KnowMore() {
-    // document.querySelector("#knowMore").classList.add("active")
-    return (
-    <div>
-      <h1 style={{color:"pink"}}>KNow More</h1>
-    </div>
-    );
-  }
-  function MainApp(){
-    //document.querySelector("#knowMore").classList.remove("active")
-    return(
-    <div>
+      </Router>
       <div className="hero">
-        <img src={head} alt="color-palatte"></img>
-      </div>
-
+          <img src={head} alt="color-palatte"></img>
+        </div>
       <div className="everyThing">
-        <div className="colors">
-          <span style={{ fontWeight: "bolder", color: "#fdfdfd" }}>
-            Backgroud Colors 
-          </span>
-          <div className="bgColorsDiv">
-            {bgColors.map((item) => {
-              return (
-                <span id="backColor" onClick={() => changeBgColor(item.colorCode)} className="bgColors">
-                  {item.color}
-                </span>
-              );
-            })}
-          </div>
-          <span id="pColor" style={{ display: "none", fontWeight: "bolder" }}>
-            Primary Colors
-          </span>
-          <div
-            className="primaryColorsDiv"
-            id="pDiv"
-            style={{ display: "none" }}
-          >
-            {primaryColors.map((item,index) => {
-              return (
-                <span
-                  onClick={() => changeColors(index,item.colorCode)}
-                  className="primaryColors"
-                >
-                  {item.color}
-                </span>
-                
-              );
-            })}
-            
-          </div>
-            
-          <span
-            id="accColor"
-            style={{ color: "#fdfdfd", display: "none", fontWeight: "bolder" }}
-          >
-            Accent Colors
-          </span>
-          <div style={{display:"none"}} id="aColor" className="accentColorsDiv">
-            {
-            aColors.map((item) => {
-                return(
-                <span
-                  onClick={() => changeAccentColor(item.colorCode)}
-                  className="accentColors">
-                  {item.color}
-                </span>
-                 ) ;
-            })}
-          </div>
+        
+      <div className="colors">
+        <span style={{ fontWeight: "bolder", color: "#fdfdfd" }}>
+          Backgroud Colors 
+        </span>
+        <div className="bgColorsDiv">
+          {bgColors.map((item) => {
+            console.log("bgcolrdiv")
+            return (
+              <span id="" onClick={() => changeBgColor(item.colorCode)} className="bgColors" style={{backgroundColor:getBg(item.colorCode)}}>
+                {item.color}
+              </span>
+            );
+          })}
         </div>
+        <span id="pColor" style={{ display: "none", fontWeight: "bolder" }}>
+          Primary Colors
+        </span>
         <div
-          className="screenn"
-          style={{ boxShadow:`0 0 30px ${screenAC}`, backgroundColor: bgColor }}
+          className="primaryColorsDiv"
+          id="pDiv"
+          style={{ display: "none" }}
         >
-          <div className="screenNav" style={{ backgroundColor: pColor }}>
-            
-            <ul className="list-none">
-              <li className="list-inline">
-                <a className="decoNone" style={{ color: screenAC }} href="/">
-                  Home
-                </a>
-              </li>
-              <li className="list-inline">
-                <a className="decoNone" style={{ color: screenAC }} href="/">
-                  About
-                </a>
-              </li>
-              <li className="list-inline">
-                <a className="decoNone" style={{ color: screenAC }} href="/">
-                  Contact
-                </a>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <img class="screenImg" alt="screen-img" src={screen}></img>
-          </div>
-          <div>
-            <div className="screenText" style={{ color: pColor }}>
-              What is Lorem Ipsum? Lorem Ipsum is simply dummy text of the
-              printing and typesetting industry. Lorem Ipsum has been the
-              industry's standard dummy text ever since the 1500s, when an
-              unknown printer took a galley of type and scrambled it to make a
-              type specimen book. It has survived not only five centuries, but
-              also the leap into electronic typesetting, remaining essentially
-              unchanged. It was popularised in the 1960s with the release of
-              Letraset sheets containing Lorem Ipsum passages, and more recently
-              with desktop publishing software like Aldus PageMaker including
-              versions of Lorem Ipsum.
-            </div>
-          </div>
-          <div style={{ backgroundColor: pColor }}>
-            <div className="screenText" style={{ color: screenAC }}>
-              What is Lorem Ipsum? Lorem Ipsum is simply dummy text of the
-              printing and typesetting industry. Lorem Ipsum has been the
-              industry's standard dummy text ever since the 1500s, when an
-              unknown printer took a galley of type and scrambled it to make a
-              type specimen book. It has survived not only five centuries, but
-              also the leap into electronic typesetting, remaining essentially
-              unchanged. It was popularised in the 1960s with the release of
-              Letraset sheets containing Lorem Ipsum passages, and more recently
-              with desktop publishing software like Aldus PageMaker including
-              versions of Lorem Ipsum.
-            </div>
-          </div>
-          <div>
-            <div className="screenText" style={{ color: pColor }}>
-              What is Lorem Ipsum? Lorem Ipsum is simply dummy text of the
-              printing and typesetting industry. Lorem Ipsum has been the
-              industry's standard dummy text ever since the 1500s, when an
-              unknown printer took a galley of type and scrambled it to make a
-              type specimen book. It has survived not only five centuries, but
-              also the leap into electronic typesetting, remaining essentially
-              unchanged. It was popularised in the 1960s with the release of
-              Letraset sheets containing Lorem Ipsum passages, and more recently
-              with desktop publishing software like Aldus PageMaker including
-              versions of Lorem Ipsum.
-            </div>
-          </div>
-          <div className="screenFooter" style={{ backgroundColor: pColor }}>
-            <span style={{ color: screenAC }}>All Rights Reserved-2020</span>
-          </div>
+          {primaryColors.map((item,index) => {
+            console.log("primcolrdiv")
+            return (
+              <span style={{backgroundColor:getPrimaryBg(item.colorCode)}}
+                onClick={() => changeColors(index,item.colorCode)}
+                className="primaryColors"
+              >
+                {item.color}
+              </span>
+              
+            );
+          })}
+          
+        </div>
+          
+        <span
+          id="accColor"
+          style={{ color: "#fdfdfd", display: "none", fontWeight: "bolder" }}
+        >
+          Accent Colors
+        </span>
+        <div style={{display:"none"}} id="aColor" className="accentColorsDiv">
+          {
+          aColors.map((item) => {
+            console.log("acccolrdiv")
+              return(
+              <span style={{backgroundColor:getAccentBg(item.colorCode)}}
+                onClick={() => changeAccentColor(item.colorCode)}
+                className="accentColors">
+                {item.color}
+              </span>
+               );
+          })}
         </div>
       </div>
-      <footer className="footer">
+      <div
+        className="screenn"
+        style={{ boxShadow:`0 0 30px ${screenAC}`, backgroundColor: bgColor }}
+      >
+        <div className="screenNav" style={{ backgroundColor: pColor }}>
+          
+          <ul className="list-none">
+            <li className="list-inline">
+              <a className="decoNone" style={{ color: screenAC }} href="/">
+                Home
+              </a>
+            </li>
+            <li className="list-inline">
+              <a className="decoNone" style={{ color: screenAC }} href="/">
+                About
+              </a>
+            </li>
+            <li className="list-inline">
+              <a className="decoNone" style={{ color: screenAC }} href="/">
+                Contact
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <img class="screenImg" alt="screen-img" src={screen}></img>
+        </div>
+        <div>
+          <div className="screenText" style={{ color: pColor }}>
+            What is Lorem Ipsum? Lorem Ipsum is simply dummy text of the
+            printing and typesetting industry. Lorem Ipsum has been the
+            industry's standard dummy text ever since the 1500s, when an
+            unknown printer took a galley of type and scrambled it to make a
+            type specimen book. It has survived not only five centuries, but
+            also the leap into electronic typesetting, remaining essentially
+            unchanged. It was popularised in the 1960s with the release of
+            Letraset sheets containing Lorem Ipsum passages, and more recently
+            with desktop publishing software like Aldus PageMaker including
+            versions of Lorem Ipsum.
+          </div>
+        </div>
+        <div style={{ backgroundColor: pColor }}>
+          <div className="screenText" style={{ color: screenAC }}>
+            What is Lorem Ipsum? Lorem Ipsum is simply dummy text of the
+            printing and typesetting industry. Lorem Ipsum has been the
+            industry's standard dummy text ever since the 1500s, when an
+            unknown printer took a galley of type and scrambled it to make a
+            type specimen book. It has survived not only five centuries, but
+            also the leap into electronic typesetting, remaining essentially
+            unchanged. It was popularised in the 1960s with the release of
+            Letraset sheets containing Lorem Ipsum passages, and more recently
+            with desktop publishing software like Aldus PageMaker including
+            versions of Lorem Ipsum.
+          </div>
+        </div>
+        <div>
+          <div className="screenText" style={{ color: pColor }}>
+            What is Lorem Ipsum? Lorem Ipsum is simply dummy text of the
+            printing and typesetting industry. Lorem Ipsum has been the
+            industry's standard dummy text ever since the 1500s, when an
+            unknown printer took a galley of type and scrambled it to make a
+            type specimen book. It has survived not only five centuries, but
+            also the leap into electronic typesetting, remaining essentially
+            unchanged. It was popularised in the 1960s with the release of
+            Letraset sheets containing Lorem Ipsum passages, and more recently
+            with desktop publishing software like Aldus PageMaker including
+            versions of Lorem Ipsum.
+          </div>
+        </div>
+        <div className="screenFooter" style={{ backgroundColor: pColor }}>
+          <span style={{ color: screenAC }}>All Rights Reserved-2020</span>
+        </div>
+      </div>
+      
+    </div> 
+    <footer className="footer">
         <span>
           All Rights Reserved-2020 |{" "}
           <a
@@ -339,9 +340,28 @@ export default function App() {
             Jesswin Chetnani
           </a>
         </span>
-      </footer>
-    </div>)
+      </footer> 
+     </div>
+    
+  );
+
+  // function MainApp(){
+  //   return(
+  //     <div>
+  //       {console.log("Main again")}
+        
+  //   </div>
+  //   );
+  // }
+  function KnowMore() {
+    // document.querySelector("#knowMore").classList.add("active")
+    return (
+    <div>
+      <h1 style={{color:"pink"}}>KNow More</h1>
+    </div>
+    );
   }
+
   
-  
+    
 }
